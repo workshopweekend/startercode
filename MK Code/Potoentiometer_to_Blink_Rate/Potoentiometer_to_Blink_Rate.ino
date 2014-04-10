@@ -1,38 +1,27 @@
 /*
-  Analog Input
- Demonstrates analog input by reading an analog sensor on analog pin 0 and
- turning on and off a light emitting diode(LED)  connected to digital pin 13. 
- The amount of time the LED will be on and off depends on
- the value obtained by analogRead(). 
- 
- The circuit:
- * Potentiometer attached to analog input 0
- * center pin of the potentiometer to the analog pin
- * one side pin (either one) to ground
- * the other side pin to +5V
- * LED anode (long leg) attached to digital output 13
- * LED cathode (short leg) attached to ground
- 
- * Note: because most Arduinos have a built-in LED attached 
- to pin 13 on the board, the LED is optional.
- 
- 
- Created by David Cuartielles
- modified 30 Aug 2011
- By Tom Igoe
- 
- This example code is in the public domain.
- 
- http://arduino.cc/en/Tutorial/AnalogInput
- 
- */
+  Adapted From: Analog Input by David Cuartielles and Tom Igoe
+  Author: Malcolm Knapp
+  Project: Poteniemter to Blink Rate
+  Date: 4/10/14
+  Version: 0.1
+  Description: This code shows how to use a poteniometer to control
+               the blink rate of a LED. 
 
-// 
+ */
+// ---------- included libraries ------------ 
+// None - include new libraries here 
+
+// ---------- hardware pin defines  ----------- 
 int sensorPin = A0;    // select the input pin for the potentiometer
 int ledPin = 13;      // select the pin for the LED
+
+// ---------- variable initialization  ----------- 
 int sensorValue = 0;  // variable to store the value coming from the sensor
 int delayTime = 0; //
 int scaling  = 1;
+
+// ---------- library initialization  ----------- 
+// None -  initialize new libraries here 
 
 void setup() {
   Serial.begin(9600);
@@ -46,16 +35,15 @@ void loop() {
   // Debugging
   Serial.println(sensorValue);
   
-  // Processing 
+  // Processing
+  // Scaling
   delayTime = scaling*sensorValue;
+  // Modes
+  // None - put new modes here 
   
   // Output   
-  // turn the ledPin on
-  digitalWrite(ledPin, HIGH);  
-  // stop the program for <sensorValue> milliseconds:
+  digitalWrite(ledPin, HIGH); // turn the ledPin on
   delay(delayTime);          
-  // turn the ledPin off:        
-  digitalWrite(ledPin, LOW);   
-  // stop the program for for <sensorValue> milliseconds:
+  digitalWrite(ledPin, LOW);   // turn the ledPin off:
   delay(delayTime);                  
 }
