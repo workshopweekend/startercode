@@ -1,29 +1,29 @@
 /*
- Analog Input
- Created by David Cuartielles
- modified 30 Aug 2011
- By Tom Igoe
- Modified 2 April 2014 
- By Malcolm Knapp
- 
- This example code is in the public domain.
- 
- http://arduino.cc/en/Tutorial/AnalogInput
- 
+  Adapted From: Analog Input by David Cuartielles and Tom Igoe
+  Author: Malcolm Knapp
+  Project: Poteniemter to Blink Rate
+  Date: 4/10/14
+  Version: 0.1
+  Description: This code shows how to use a light sensor to control
+               the "blink" rate of a servo. In this case "blink" means
+               moving between two positions.
+
  */
+// ---------- included libraries ------------ 
+#include <Servo.h>
 
-// included libraries
-
-// initialize variables
+// ---------- hardware pin defines  ----------- 
 int sensorPin = A0;    // select the input pin for the potentiometer
-int ledPin = 13;      // select the pin for the LED
-int sensorValue = 0;  // variable that holds the the value coming from the sensor
-int delayTime = 0;     //variable that holds the delay time in milliseconds
-int scaling factor = 1;
-int maxValue = 0;
-int minValue = 1023; 
 
-// Library objects  
+// ---------- variable initialization  ----------- 
+int sensorValue = 0;  // variable to store the value coming from the sensor
+int delayTime = 0; //variable that holds the delay time in milliseconds
+int scaling = 1;
+int maxValue = 300;
+int minValue = 750;
+
+
+// ---------- library initialization  -----------  
 Servo myservo;  // create servo object to control a servo a maximum of eight servo objects can be created 
 
 void setup() {
@@ -36,24 +36,19 @@ void loop() {
   // Input
   sensorValue = analogRead(sensorPin); 
   // Debugging
-  Serial.println(sensorValue);
+  Serial.print("Sensor value: ");  Serial.println(sensorValue);
   
-  // determine input value range
-  if (sensorValue > maxValue) {
-    maxValue = sensorValue;
-  }
-  if (sensorValue < minValue) {
-    minValue = sensorValue;
-  }
-  Serial.print("Max Value");Serial.println(maxValue);
-  Serial.print("Min Value");Serial.println(minValue);
   
-  // Processing 
-  delayTime = map (sensorValue, minValue, maxValue, 0, 1023);
+  // Processing
+  //Scaling
+  delayTime = map (sensorValue, minValue, maxValue, 200, 1023);
+  Serial.print ("Delay in milliseconds: "); Serial.println (delayTime);
+  // Modes
+  // None - put new modes here 
   
-  // Output   
-  myservo.write(0); 
-  delay(delayTime);            
-  myservo.write(180);   
-  delay(delayTime);                  
+  // Output 
+  myservo.write(155); 
+  delay(delayTime); 
+  myservo.write(30);
+  delay(delayTime);    
 }

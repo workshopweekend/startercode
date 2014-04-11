@@ -18,7 +18,7 @@ int ledPin = 13;      // select the pin for the LED
 // ---------- variable initialization  ----------- 
 int sensorValue = 0;  // variable to store the value coming from the sensor
 int delayTime = 0; //
-int scaling  = 1;
+int scaling = 1;
 
 // ---------- library initialization  ----------- 
 // None -  initialize new libraries here 
