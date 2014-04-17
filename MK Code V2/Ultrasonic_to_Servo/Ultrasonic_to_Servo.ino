@@ -1,13 +1,11 @@
-
-
 /*
   Adapted From: Analog Input by David Cuartielles and Tom Igoe
   Author: Malcolm Knapp
-  Project: Poteniemter to Blink Rate
+  Project: Ultrasonic Sensor to Servo 
   Date: 4/10/14
   Version: 0.1
-  Description: This code shows how to use a light sensor to control
-               the "blink" rate of a servo. In this case "blink" means
+  Description: This code shows how to use a ultrasonic distance sensor to 
+               control the "blink" rate of a servo. In this case "blink" means
                moving between two positions.
 
  */
@@ -16,15 +14,15 @@
 #include <NewPing.h>
 
 // ---------- hardware pin defines  ----------- 
-int triggerPin = 13;      // select the pin for ultrasonic trigger
-int echoPin = 12;      // select the pin for echo
+int triggerPin = 12;      // select the pin for ultrasonic trigger
+int echoPin = 11;      // select the pin for echo
 
 // ---------- variable initialization  ----------- 
 int delayTime = 0; 
 //variable that holds the delay time in milliseconds
 int scaling = 1;
-int maxValue = 300;
-int minValue = 750;
+int maxValue = 3000;
+int minValue = 50;
 int maxDistance = 200;   // in centimeters
 
 // ---------- library initialization  -----------  

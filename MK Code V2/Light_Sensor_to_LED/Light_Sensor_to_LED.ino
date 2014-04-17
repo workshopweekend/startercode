@@ -1,7 +1,7 @@
 /*
   Adapted From: Analog Input by David Cuartielles and Tom Igoe
   Author: Malcolm Knapp
-  Project: Poteniemter to Blink Rate
+  Project: Light Sensor to LED
   Date: 4/10/14
   Version: 0.1
   Description: This code shows how to use a light sensor to control
@@ -12,12 +12,12 @@
 // None - include new libraries here 
 
 // ---------- hardware pin defines  ----------- 
-int sensorPin = A0;    // select the input pin for the potentiometer
+int sensorPin = A0;    // select the input pin for the light sensor
 int ledPin = 13;      // select the pin for the LED
 
 // ---------- variable initialization  ----------- 
 int sensorValue = 0;  // variable to store the value coming from the sensor
-int delayTime = 0; //
+int delayTime = 0; //variable that holds the delay time in milliseconds
 int scaling = 1;
 int maxValue = 300;
 int minValue = 750;
@@ -27,7 +27,7 @@ int minValue = 750;
 
 void setup() {
   Serial.begin(9600);
-  // declareO hardware connections
+  // declare hardware connections
   pinMode(ledPin, OUTPUT);  
 }
 
@@ -37,10 +37,9 @@ void loop() {
   // Debugging
   Serial.print("Sensor value: ");  Serial.println(sensorValue);
   
-  
   // Processing
   //Scaling
-  int delayTime = map (sensorValue, minValue-1, maxValue, 0, 1023);
+  delayTime = map (sensorValue, minValue, maxValue, 0, 1023);
   Serial.print ("Delay in milliseconds: "); Serial.println (delayTime);
   // Modes
   // None - put new modes here 
@@ -49,7 +48,5 @@ void loop() {
   digitalWrite(ledPin, HIGH); // turn the ledPin on
   delay(delayTime);          
   digitalWrite(ledPin, LOW);   // turn the ledPin off:
-  delay(delayTime);  
-
-  
+  delay(delayTime);
 }

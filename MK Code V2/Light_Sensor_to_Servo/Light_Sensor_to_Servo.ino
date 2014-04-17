@@ -1,7 +1,7 @@
 /*
   Adapted From: Analog Input by David Cuartielles and Tom Igoe
   Author: Malcolm Knapp
-  Project: Poteniemter to Blink Rate
+  Project: Light Sensor to Servo
   Date: 4/10/14
   Version: 0.1
   Description: This code shows how to use a light sensor to control
@@ -19,8 +19,8 @@ int sensorPin = A0;    // select the input pin for the potentiometer
 int sensorValue = 0;  // variable to store the value coming from the sensor
 int delayTime = 0; //variable that holds the delay time in milliseconds
 int scaling = 1;
-int maxValue = 300;
-int minValue = 750;
+int maxValue = 750;
+int minValue = 300;
 
 
 // ---------- library initialization  -----------  
