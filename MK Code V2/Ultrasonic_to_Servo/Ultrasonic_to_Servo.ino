@@ -43,7 +43,7 @@ void loop() {
   distance = uS / US_ROUNDTRIP_CM;  // convert time to distance
   // Debugging
   Serial.print("uS value: "); Serial.println(uS);
-  Serial.print("Sensor value: "); Serial.println(distance);
+  Serial.print("Distance (cm): "); Serial.println(distance);
   
   // Processing 
   //Scaling
