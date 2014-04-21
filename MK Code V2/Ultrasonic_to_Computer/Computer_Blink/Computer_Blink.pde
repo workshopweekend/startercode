@@ -16,35 +16,42 @@ int index = 0;
 
 void setup() {
   size (400, 400);
+  if (frame != null) {
+    frame.setResizable(true);
+  }
   colorMode(RGB, 100);
   background (0,0,0);
   // List all the available serial ports
   println(Serial.list());
   // I know that the first port in the serial list on my mac
 
-  myPort = new Serial(this, Serial.list()[0], 9600); // This looks at the first port in the Serial List
+  myPort = new Serial(this, Serial.list()[9], 9600); // This looks at the first port in the Serial List
 }
 
 void draw() {
   while (myPort.available() > 0) {
     int inByte = myPort.read();
-    if (inByte == 13) {  // end of message check
-    //  println(message);
+    if (inByte == '\n') {  // end of message check
+      println(message);
       break;
     } 
     message = message + char(inByte);
   }
-    if (data.equals("ON")) {
-      background (0,0,0);
+  if (message.equals("ON") == true) {
+    background (100,100,100);
+    //print("Screen "); println(message);
+  } else if (message.equals("OFF")== true) {
+    background (0,0,0);
+    //print("Screen "); println(message);
+  } else {
+    if (message.equals("") == false) {
+      //println(message);
     }
-    if (data.equals("OFF")) {
-      background (100,100,100);
-    }
-  delay(100);                                
+  }
+  delay(100); 
+  message = "";  
 }
 
 void keyPressed() {
-  output.flush(); // Writes the remaining data to the file
-  output.close(); // Finishes the file
   exit(); // Stops the program
 }

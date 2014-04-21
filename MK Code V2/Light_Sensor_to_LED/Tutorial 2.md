@@ -2,14 +2,10 @@ Tutorial 2: Light Sensor to LED by Malcolm Knapp
 ===========
 
 # Introduction
-This tutorial shows you how to switch out the potentiometer for a light sensor. We will go through how to chnage the electronics and code to make it give you the same behavior. The trick about this code is that the Light Sensor does not have the same input range as the potoentiometer.As you saw before the potentiometer input is the whole range of the ADC i.e from 0 to 1023. The light sensor resistance does not change as much as the potentiometer and so it will have a smaller range in the ADC. We will show you how to find this new range and update the code so it will have the same behavior as before 
+This tutorial shows you how to switch out the potentiometer for a light sensor. We will go through how to change the electronics and code to make it give you the same behavior. The trick about this code is that the Light Sensor does not have the same input range as the potentiometer. As you saw before the potentiometer input is the whole range of the ADC i.e from 0 to 1023. The light sensor resistance does not change as much as the potentiometer and so it will have a smaller range in the ADC. We will show you how to find this new range and update the code so it will have the same behavior as before 
 
 #Block Diagram
-
-
-	Light Sensor -- Analog Siganl --> Arduino -- Digital Signal --> LED
- 									    |
-									    |- ascii Text Signal --> Computer
+![Light Sensor to LED System](Light_Sensor_to_LED_System.png)
 
 # Circuit
 * To set up the circuit see the fritzing diagram for this tutorial
@@ -35,7 +31,7 @@ to
 
 	delayTime = map (sensorValue, minValue, maxValue, 0, 1023);
 
-The map function takes in the sensor values and scales it from its range (In this case from ~300 to ~750) to the orginal range we had (0 to 1023)
-* Upload the code again and see how the min and max delay values are now in the orginal range and the blink rate behaves like it did before. 
+The map function takes in the sensor values and scales it from its range (In this case from ~300 to ~750) to the original range we had (0 to 1023)
+* Upload the code again and see how the min and max delay values are now in the original range and the blink rate behaves like it did before. 
 
 * You are done with this tutorial! You can now go on to tutorial 3.

@@ -18,13 +18,12 @@ int triggerPin = 12;      // select the pin for ultrasonic trigger
 int echoPin = 11;      // select the pin for echo
 
 // ---------- variable initialization  ----------- 
-int delayTime = 0; 
-//variable that holds the delay time in milliseconds
+int delayTime = 0; //variable that holds the delay time in milliseconds
 int scaling = 1;
 unsigned int uS = 0;      // holds the time it took for the pulse to be recived
 unsigned int distance = 0; // holds the distance in centimeters
 int maxValue = 200;    // in centimeter
-int minValue = 5;      // in centimeter
+int minValue = 0;      // in centimeter
 int maxDistance = 200;   // in centimeters
 
 // ---------- library initialization  -----------  
@@ -43,11 +42,12 @@ void loop() {
   uS = sonar.ping(); // Send ping, get ping time in microseconds (uS).
   distance = uS / US_ROUNDTRIP_CM;  // convert time to distance
   // Debugging
+  Serial.print("uS value: "); Serial.println(uS);
   Serial.print("Sensor value: "); Serial.println(distance);
   
   // Processing 
   //Scaling
-  delayTime = map (distance, minValue, maxValue, 0, 1023);
+  delayTime = map (distance, minValue, maxValue, 200, 1023);
   Serial.print ("Delay in milliseconds: "); Serial.println (delayTime);
   // Modes
   // None - put new modes here

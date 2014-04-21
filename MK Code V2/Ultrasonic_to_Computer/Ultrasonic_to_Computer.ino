@@ -21,10 +21,12 @@ int echoPin = 11;      // select pint
 // ---------- variable initialization  -----------
 int delayTime = 0;     //variable that holds the delay time in milliseconds
 int scaling = 1;
-int maxValue = 3000;    // in microseconds
-int minValue = 50;      // in microseconds
+unsigned int uS = 0;      // holds the time it took for the pulse to be recived
+unsigned int distance = 0; // holds the distance in centimeters
+int maxValue = 100;    // in centimeter
+int minValue = 0;      // in centimeter
 int maxDistance = 200;   
-char Terminator = 13;  // in centimeters
+char Terminator = '\n';  // in centimeters
 
 // ---------- library initialization  -----------  
 NewPing sonar(triggerPin, echoPin, maxDistance);
@@ -37,21 +39,23 @@ void setup() {
 void loop() {
   // Input
   delay(50);  // Wait 50ms between pings (about 20 pings/sec). 29ms should be the shortest delay between pings.
-  unsigned int uS = sonar.ping(); // Send ping, get ping time in microseconds (uS).
+  uS = sonar.ping(); // Send ping, get ping time in microseconds (uS).
+  distance = uS / US_ROUNDTRIP_CM;  // convert time to distance
   // Debugging
-  Serial.print("Sensor value: "); Serial.println(uS);
+  Serial.print("uS value: "); Serial.println(uS);
+  Serial.print("Distance (cm): "); Serial.println(distance);
   
   
   // Processing 
   //Scaling
-  delayTime = map (uS, minValue, maxValue, 0, 1023);
+  delayTime = map (distance, minValue, maxValue, 100, 1023);
   Serial.print ("Delay in milliseconds: "); Serial.println (delayTime);
   // Modes
   // None - put new modes here
   
   // Output   
-  Serial.print("ON"); Serial.println(Terminator, DEC);
+  Serial.print("ON"); Serial.print(Terminator);
   delay(delayTime);        
-  Serial.print("OFF"); Serial.println(Terminator, DEC);
+  Serial.print("OFF"); Serial.print(Terminator);
   delay(delayTime);                  
 }
