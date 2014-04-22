@@ -12,6 +12,7 @@ Whenever you are sending messages you run into a series of issues. The first one
 
 # Circuit
 * To set up the circuit see the fritzing diagram for this tutorial
+* NOTE: the ulrasonic sensor gives false readings if the distance to the object is greater than the max distance in the code. For testing be sure that you have a object (like a box) that at a distance less than the max. 
 
 # Code
 * Save the "Ultrasonic to Servo" code as "Ultrasonic to Computer"
