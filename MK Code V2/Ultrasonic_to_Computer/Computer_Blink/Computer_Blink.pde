@@ -25,8 +25,7 @@ void setup() {
   println(Serial.list());
   // I know that the first port in the serial list on my mac
 
-  myPort = new Serial(this, Serial.list()[9], 9600); // This looks at the first port in the Serial List
-}
+  myPort = new Serial(this, Serial.list()[0], 9600);
 
 void draw() {
   while (myPort.available() > 0) {

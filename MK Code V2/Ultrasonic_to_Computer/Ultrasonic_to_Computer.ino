@@ -33,7 +33,7 @@ NewPing sonar(triggerPin, echoPin, maxDistance);
 
 void setup() {
   Serial.begin(9600);
-  // declare hardware connections
+  //---------- hardware declaration ----------
 }
 
 void loop() {
@@ -48,7 +48,7 @@ void loop() {
   
   // Processing 
   //Scaling
-  delayTime = map (distance, minValue, maxValue, 100, 1023);
+  delayTime = map (distance, minValue, maxValue, 200, 1023);
   Serial.print ("Delay in milliseconds: "); Serial.println (delayTime);
   // Modes
   // None - put new modes here
